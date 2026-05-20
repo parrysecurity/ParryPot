@@ -1,136 +1,192 @@
 <div align="center">
-  
+
 # 🍯 ParryPot
 
-**Enterprise Honeypot Security Platform** *Deploy. Trap. Analyze. Protect.*
+### Enterprise Honeypot Security Platform
+
+> **Deploy. Trap. Analyze. Protect.**
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey?style=for-the-badge)](#)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20|%20Windows%20|%20macOS-lightgrey?style=for-the-badge)](#)
 [![Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-orange?style=for-the-badge)](#contributing)
 
 </div>
 
-<br>
+---
 
-## 📌 Table of Contents
+# 📌 Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Quick Start](#-quick-start)
-- [Installation](#-installation)
-- [Configuration](#️-configuration)
-- [Dashboard Guide](#-dashboard-guide)
-- [Testing the Honeypot](#-testing-the-honeypot)
-- [API Reference](#-api-reference)
-- [Deployment](#-deployment)
-- [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
+- [🎯 Overview](#-overview)
+- [✨ Features](#-features)
+- [🏗️ Architecture](#️-architecture)
+- [🚀 Quick Start](#-quick-start)
+- [📥 Installation](#-installation)
+- [⚙️ Configuration](#️-configuration)
+- [🔥 Firewall Setup](#-firewall-setup)
+- [📊 Dashboard Guide](#-dashboard-guide)
+- [🧪 Testing the Honeypot](#-testing-the-honeypot)
+- [🔌 API Reference](#-api-reference)
+- [🚢 Deployment](#-deployment)
+- [🔧 Troubleshooting](#-troubleshooting)
+- [🛠️ Project Structure](#️-project-structure)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [🙏 Acknowledgments](#-acknowledgments)
+- [📞 Contact & Support](#-contact--support)
 
 ---
 
-## 🎯 Overview
+# 🎯 Overview
 
-**ParryPot** is a production‑ready honeypot platform developed by **ParrySecurity** that deploys deceptive services to trap, analyze, and visualize cyber attacks in real‑time. Built for SOC teams, security researchers, and red team operations, ParryPot transforms attacker reconnaissance into actionable threat intelligence.
+**ParryPot** is a production-ready honeypot platform developed by **ParrySecurity** that deploys deceptive services to trap, analyze, and visualize cyber attacks in real-time.
 
-### What Makes ParryPot Different?
+Built for:
 
-| Feature | ParryPot | Traditional Honeypots |
-| :--- | :--- | :--- |
-| **Zero False Positives** | ✅ Every connection is malicious | ❌ Often flag legitimate traffic |
-| **Real-time Visualization** | ✅ Live attack map with geolocation | ❌ Basic logging only |
-| **Multi-Protocol** | ✅ 6 protocols out of the box | ⚠️ Usually single protocol |
-| **Beautiful Dashboard** | ✅ Glassmorphism modern UI | ❌ Outdated interfaces |
-| **Zero Configuration** | ✅ Run immediately | ⚠️ Complex setup required |
+- SOC Teams
+- Security Researchers
+- Blue Teams
+- Threat Hunters
+- Red Team Labs
+- Cybersecurity Enthusiasts
+
+ParryPot transforms attacker reconnaissance into actionable threat intelligence.
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-### 🎣 Honeypot Services
+## 🎣 Honeypot Services
 
 | Protocol | Port | Captured Data |
-| :--- | :--- | :--- |
-| **SSH** | `2022` | Usernames, passwords, commands, client fingerprints |
-| **HTTP** | `2080` | SQL injection, XSS, path traversal, user agents |
-| **FTP** | `2021` | Login attempts, file commands, directory listings |
-| **Telnet** | `2023` | Full session logs, credentials, commands |
-| **SMTP** | `2025` | Spam relay attempts, email headers, recipient data |
-| **DNS** | `2053` | Domain queries, DNS tunneling detection |
-
-### 📊 Dashboard Features
-* **Live Attack Map** - Real-time geolocation of attackers with Leaflet.js.
-* **Glassmorphism UI** - Modern frosted glass design with fluid animations.
-* **Intelligent Alerting** - Severity-based alerts (Critical / High / Medium / Low).
-* **Attacker Database** - Searchable, filterable, and sortable with export options.
-* **Analytics Engine** - Attack trends, protocol distribution, and heatmaps.
-* **Event Feed** - Real-time scrolling log of all active connections.
-
-### 🛡️ Security Intelligence
-* **Geolocation Mapping** - Plot attackers on a global map.
-* **Threat Level Scoring** - Automatic risk assessment per IP address.
-* **Protocol Fingerprinting** - Identify specific attack tools and techniques.
-* **Payload Capture** - Full attack payloads for forensic analysis.
-* **MITRE ATT&CK Mapping** - Map incoming attacks to the standard framework.
+|---|---|---|
+| **SSH** | `2022` | Credentials, commands, fingerprints |
+| **HTTP** | `2080` | SQLi, XSS, path traversal, headers |
+| **FTP** | `2021` | Login attempts, commands |
+| **Telnet** | `2023` | Full interactive sessions |
+| **SMTP** | `2025` | Spam attempts, email headers |
+| **DNS** | `2053` | Queries & tunneling attempts |
 
 ---
 
-## 🏗️ Architecture
+## 📊 Dashboard Features
+
+- 🌍 Real-Time Global Attack Map
+- 📈 Live Threat Analytics
+- 🚨 Intelligent Alerting System
+- 🧠 Risk Scoring Engine
+- 📋 Event Logging
+- 📤 CSV Export Support
+- 🎨 Modern Glassmorphism UI
+- ⚡ Lightweight & Fast
+
+---
+
+## 🛡️ Security Intelligence
+
+- Geolocation Mapping
+- Threat Scoring
+- Payload Capture
+- MITRE ATT&CK Mapping
+- Protocol Fingerprinting
+- Attack Trend Analysis
+
+---
+
+# 🏗️ Architecture
 
 <details>
-<summary><b>Click to view the System Architecture Diagram</b></summary>
+<summary><b>Click to Expand Architecture Diagram</b></summary>
 
 ```text
-┌─────────────────────────────────────────────────────────────────┐
-│                      PARRYPOT PLATFORM                          │
-│                                                                 │
-│  ┌──────────────┐   ┌──────────────┐   ┌──────────────────────┐ │
-│  │   SSH:2022   │   │   HTTP:2080  │   │   FTP:2021           │ │
-│  │   Telnet:2023│   │   SMTP:2025  │   │   DNS:2053           │ │
-│  └──────┬───────┘   └──────┬───────┘   └──────────┬───────────┘ │
-│         └──────────────────┼──────────────────────┘             │
-│                            │                                    │
-│         ┌──────────────────▼──────────────────┐                 │
-│         │      Python Honeypot Engine         │                 │
-│         │    Threaded protocol handlers       │                 │
-│         └──────────────────┬──────────────────┘                 │
-│                            │                                    │
-│         ┌──────────────────▼──────────────────┐                 │
-│         │          Shared State (RAM)         │                 │
-│         │    Events • Alerts • Attackers      │                 │
-│         └──────────────────┬──────────────────┘                 │
-│                            │                                    │
-│         ┌──────────────────▼──────────────────┐                 │
-│         │      Flask/Dashboard (Port 5000)    │                 │
-│         │    HTML/CSS/JS with Chart.js        │                 │
-│         └─────────────────────────────────────┘                 │
-│                            │                                    │
-│                  ┌─────────▼─────────┐                          │
-│                  │      Browser      │                          │
-│                  │     Dashboard     │                          │
-│                  └───────────────────┘                          │
-└─────────────────────────────────────────────────────────────────┘
-## 🚀 Quick Start
+┌───────────────────────────────────────────────────────────────┐
+│                      PARRYPOT PLATFORM                       │
+│                                                               │
+│   SSH      HTTP      FTP      TELNET     SMTP      DNS       │
+│  :2022    :2080     :2021      :2023     :2025    :2053      │
+│                                                               │
+├───────────────────────────────────────────────────────────────┤
+│                Python Honeypot Engine                        │
+│            Multi-threaded Protocol Handlers                  │
+├───────────────────────────────────────────────────────────────┤
+│                 Shared State & Analytics                     │
+│          Events • Alerts • Attackers • Risk Data             │
+├───────────────────────────────────────────────────────────────┤
+│                Flask Dashboard (Port 5000)                   │
+│          Chart.js • Leaflet.js • Real-time UI                │
+└───────────────────────────────────────────────────────────────┘
+```
 
-### One Command Installation
+</details>
+
+---
+
+# 🚀 Quick Start
+
+## ⚡ One Command Installation
 
 ```bash
-git clone [https://github.com/parrysecurity/parrypot.git](https://github.com/parrysecurity/parrypot.git)
-cd parrypot
-sudo python3 parrypot.py
-Done! Your honeypot is now running.Access the dashboard: http://localhost:5000Login: admin / admin123📥 InstallationPrerequisitesRequirementSpecificationPython3.10 or higherPackage Managerpip (Latest)OS SupportLinux / Windows / macOSMemory512MB RAM minimumStorage100MB free spaceStep-by-Step InstallationLinux / macOSBash# Clone repository
-git clone [https://github.com/parrysecurity/parrypot.git](https://github.com/parrysecurity/parrypot.git)
+git clone https://github.com/parrysecurity/parrypot.git
+
 cd parrypot
 
-# Install Python dependencies
+sudo python3 parrypot.py
+```
+
+✅ Your honeypot is now running.
+
+---
+
+## 🌐 Dashboard Access
+
+| Setting | Value |
+|---|---|
+| URL | `http://localhost:5000` |
+| Username | `admin` |
+| Password | `admin123` |
+
+---
+
+# 📥 Installation
+
+## 📋 Prerequisites
+
+| Requirement | Specification |
+|---|---|
+| Python | 3.10+ |
+| Package Manager | pip |
+| Operating System | Linux / Windows / macOS |
+| RAM | 512MB Minimum |
+| Storage | 100MB Free Space |
+
+---
+
+## 🐧 Linux / macOS
+
+```bash
+# Clone repository
+git clone https://github.com/parrysecurity/parrypot.git
+
+# Enter directory
+cd parrypot
+
+# Install dependencies
 pip3 install -r requirements.txt
 
-# Run with sudo (required for low ports)
+# Run ParryPot
 sudo python3 parrypot.py
-WindowsPowerShell# Clone repository
-git clone [https://github.com/parrysecurity/parrypot.git](https://github.com/parrysecurity/parrypot.git)
+```
+
+---
+
+## 🪟 Windows
+
+```powershell
+# Clone repository
+git clone https://github.com/parrysecurity/parrypot.git
+
+# Enter directory
 cd parrypot
 
 # Install dependencies
@@ -138,39 +194,170 @@ pip install -r requirements.txt
 
 # Run as Administrator
 python parrypot.py
-⚙️ ConfigurationEdit the CONFIG dictionary in parrypot.py to customize your ports and credentials:PythonCONFIG = {
-    "dashboard_port": 5000,    # Web dashboard
-    "ssh_port": 2022,          # SSH honeypot
-    "http_port": 2080,         # HTTP honeypot
-    "ftp_port": 2021,          # FTP honeypot
-    "telnet_port": 2023,       # Telnet honeypot
-    "smtp_port": 2025,         # SMTP honeypot
-    "dns_port": 2053,          # DNS honeypot
-    "admin_user": "admin",     # Dashboard username
-    "admin_pass": "admin123",  # Dashboard password
+```
+
+---
+
+# ⚙️ Configuration
+
+Edit the `CONFIG` dictionary inside `parrypot.py`.
+
+```python
+CONFIG = {
+    "dashboard_port": 5000,
+    "ssh_port": 2022,
+    "http_port": 2080,
+    "ftp_port": 2021,
+    "telnet_port": 2023,
+    "smtp_port": 2025,
+    "dns_port": 2053,
+
+    "admin_user": "admin",
+    "admin_pass": "admin123",
 }
-Firewall Setup (Ubuntu/Debian Example)Ensure you allow incoming connections to your honeypot ports:Bashsudo ufw allow 2022/tcp
+```
+
+---
+
+# 🔥 Firewall Setup
+
+## Ubuntu / Debian Example
+
+```bash
+sudo ufw allow 2022/tcp
 sudo ufw allow 2080/tcp
 sudo ufw allow 2021/tcp
 sudo ufw allow 2023/tcp
 sudo ufw allow 2025/tcp
 sudo ufw allow 2053/udp
 sudo ufw allow 5000/tcp
-📊 Dashboard GuideLogin Page: Access via http://your-server-ip:5000 (Default: admin/admin123). Features a 3D animated background with floating particles.Statistics Tab: View total events, alerts, attackers, risk scores, and attack distributions (Doughnut/Bar charts).Attack Map Tab: Real-time geolocation of attackers with interactive zoom/pan and heatmap layers.Alerts & Analytics: Filter by severity, acknowledge individual alerts, export to CSV, and analyze hourly attack trends.🧪 Testing the HoneypotUse these commands to simulate attacks and test your setup:Bash# Test HTTP honeypot
+```
+
+---
+
+# 📊 Dashboard Guide
+
+## 🔐 Login Page
+
+Access via:
+
+```text
+http://your-server-ip:5000
+```
+
+Default Credentials:
+
+```text
+Username: admin
+Password: admin123
+```
+
+---
+
+## 📈 Statistics Tab
+
+Monitor:
+
+- Total Events
+- Alerts
+- Attackers
+- Risk Scores
+- Attack Distribution
+- Hourly Trends
+
+---
+
+## 🌍 Attack Map
+
+Features:
+
+- Real-time geolocation
+- Interactive heatmaps
+- Zoom & pan support
+- Threat clustering
+
+---
+
+## 🚨 Alerts & Analytics
+
+- Severity Filtering
+- Alert Acknowledgement
+- CSV Export
+- Attack Trend Analysis
+
+---
+
+# 🧪 Testing the Honeypot
+
+## 🌐 HTTP Honeypot
+
+```bash
 curl http://localhost:2080/admin
+
 curl "http://localhost:2080/../../../../etc/passwd"
+```
 
-# Test SSH honeypot (Accepts any credentials)
+---
+
+## 🔐 SSH Honeypot
+
+```bash
 ssh -p 2022 root@localhost
+```
 
-# Test FTP honeypot
+---
+
+## 📂 FTP Honeypot
+
+```bash
 ftp localhost 2021
+```
 
-# Test Telnet honeypot
+---
+
+## 📡 Telnet Honeypot
+
+```bash
 telnet localhost 2023
-🔌 API ReferenceMethodEndpointDescriptionGET/api/eventsGet recent eventsGET/api/alertsGet security alertsGET/api/attackersGet attacker databaseGET/api/statsGet platform statisticsPOST/api/clearClear all dataPOST/api/loginAuthenticate userPOST/api/logoutLogout userExample API Call:Bashcurl http://localhost:5000/api/stats
-🚢 DeploymentRun as Systemd Service (Linux)Keep ParryPot running permanently in the background:Bash# Create service file
-sudo cat > /etc/systemd/system/parrypot.service << EOF
+```
+
+---
+
+# 🔌 API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/events` | Get recent events |
+| GET | `/api/alerts` | Get alerts |
+| GET | `/api/attackers` | Get attacker database |
+| GET | `/api/stats` | Platform statistics |
+| POST | `/api/clear` | Clear all data |
+| POST | `/api/login` | Authenticate user |
+| POST | `/api/logout` | Logout user |
+
+---
+
+## Example API Request
+
+```bash
+curl http://localhost:5000/api/stats
+```
+
+---
+
+# 🚢 Deployment
+
+## Run as Systemd Service (Linux)
+
+### Create Service File
+
+```bash
+sudo nano /etc/systemd/system/parrypot.service
+```
+
+Paste:
+
+```ini
 [Unit]
 Description=ParryPot Honeypot Service
 After=network.target
@@ -180,15 +367,136 @@ Type=simple
 User=root
 WorkingDirectory=/root/parrypot
 ExecStart=/usr/bin/python3 /root/parrypot/parrypot.py
+
 Restart=always
 RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
-EOF
+```
 
-# Enable and start
+---
+
+## Enable & Start
+
+```bash
 sudo systemctl daemon-reload
+
 sudo systemctl enable parrypot
+
 sudo systemctl start parrypot
-🔧 TroubleshootingIssueSolutionPort already in useChange the port in CONFIG or kill the existing process: sudo fuser -k 5000/tcpPermission deniedRun with sudo (required for binding ports below 1024).Module not foundEnsure you ran pip3 install -r requirements.txt.Dashboard not loadingCheck your firewall settings: sudo ufw allow 5000/tcp.🤝 ContributingWe welcome contributions!Fork the repository.Create a feature branch (git checkout -b feature/amazing-feature).Commit your changes (git commit -m "Add amazing feature").Push to the branch (git push origin feature/amazing-feature).Open a Pull Request.📄 LicenseDistributed under the MIT License. See LICENSE for more information.🙏 AcknowledgmentsBuilt with Python, Chart.js, and Leaflet.js.Inspired by modern SOC requirements.Glassmorphism design elements sourced from the Figma community.📞 Contact & SupportIf ParryPot helps your security operations, please consider showing your support:⭐ Star the repository on GitHub!📢 Share it with your security team.ChannelLinkGitHub@parrysecurityWebsiteparrysecurity.onlineEmailsecurityparry@gmail.comIssuesReport a BugMade with 🍯 by ParrySecurity Catch attackers before they catch you.
+```
+
+---
+
+## Check Status
+
+```bash
+sudo systemctl status parrypot
+```
+
+---
+
+# 🔧 Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| Port already in use | Change port or run `sudo fuser -k 5000/tcp` |
+| Permission denied | Run with `sudo` |
+| Module not found | Install dependencies |
+| Dashboard inaccessible | Open firewall ports |
+
+---
+
+# 🛠️ Project Structure
+
+```text
+parrypot/
+│
+├── parrypot.py
+├── requirements.txt
+├── templates/
+├── static/
+├── logs/
+├── screenshots/
+└── README.md
+```
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+## Contribution Steps
+
+```bash
+# Fork the repository
+
+# Create feature branch
+git checkout -b feature/amazing-feature
+
+# Commit changes
+git commit -m "Add amazing feature"
+
+# Push branch
+git push origin feature/amazing-feature
+```
+
+Then open a Pull Request 🚀
+
+---
+
+# 📄 License
+
+Distributed under the MIT License.
+
+See `LICENSE` for more information.
+
+---
+
+# 🙏 Acknowledgments
+
+Built with:
+
+- Python
+- Flask
+- Chart.js
+- Leaflet.js
+
+Inspired by:
+
+- Modern SOC Platforms
+- Threat Intelligence Systems
+- Security Research Communities
+
+---
+
+# 📞 Contact & Support
+
+| Platform | Link |
+|---|---|
+| GitHub | `@parrysecurity` |
+| Website | `parrysecurity.online` |
+| Email | `securityparry@gmail.com` |
+
+---
+
+# ⭐ Support the Project
+
+If ParryPot helps your security operations:
+
+- ⭐ Star the repository
+- 🍴 Fork the project
+- 📢 Share with your team
+- 🛡️ Contribute improvements
+
+---
+
+<div align="center">
+
+# 🍯 Made with passion by ParrySecurity
+
+### “Catch attackers before they catch you.”
+
+</div>
