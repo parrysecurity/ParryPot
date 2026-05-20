@@ -112,18 +112,15 @@
 │                  │     Dashboard     │                          │
 │                  └───────────────────┘                          │
 └─────────────────────────────────────────────────────────────────┘
-🚀 Quick Start
-One Command Installation
+## 🚀 Quick Start
+
+### One Command Installation
+
+```bash
 git clone [https://github.com/parrysecurity/parrypot.git](https://github.com/parrysecurity/parrypot.git)
 cd parrypot
 sudo python3 parrypot.py
-Done! Your honeypot is now running.
-
-Access the dashboard: http://localhost:5000
-
-Login: admin / admin123
-📥 InstallationPrerequisitesRequirementSpecificationPython3.10 or higherPackage Managerpip (Latest)OS SupportLinux / Windows / macOSMemory512MB RAM minimumStorage100MB free spaceStep-by-Step InstallationLinux / macOS
-# Clone repository
+Done! Your honeypot is now running.Access the dashboard: http://localhost:5000Login: admin / admin123📥 InstallationPrerequisitesRequirementSpecificationPython3.10 or higherPackage Managerpip (Latest)OS SupportLinux / Windows / macOSMemory512MB RAM minimumStorage100MB free spaceStep-by-Step InstallationLinux / macOSBash# Clone repository
 git clone [https://github.com/parrysecurity/parrypot.git](https://github.com/parrysecurity/parrypot.git)
 cd parrypot
 
@@ -132,8 +129,7 @@ pip3 install -r requirements.txt
 
 # Run with sudo (required for low ports)
 sudo python3 parrypot.py
-Windows
-# Clone repository
+WindowsPowerShell# Clone repository
 git clone [https://github.com/parrysecurity/parrypot.git](https://github.com/parrysecurity/parrypot.git)
 cd parrypot
 
@@ -142,9 +138,7 @@ pip install -r requirements.txt
 
 # Run as Administrator
 python parrypot.py
-⚙️ Configuration
-Edit the CONFIG dictionary in parrypot.py to customize your ports and credentials:
-CONFIG = {
+⚙️ ConfigurationEdit the CONFIG dictionary in parrypot.py to customize your ports and credentials:PythonCONFIG = {
     "dashboard_port": 5000,    # Web dashboard
     "ssh_port": 2022,          # SSH honeypot
     "http_port": 2080,         # HTTP honeypot
@@ -155,27 +149,14 @@ CONFIG = {
     "admin_user": "admin",     # Dashboard username
     "admin_pass": "admin123",  # Dashboard password
 }
-Firewall Setup (Ubuntu/Debian Example)
-Ensure you allow incoming connections to your honeypot ports:
-sudo ufw allow 2022/tcp
+Firewall Setup (Ubuntu/Debian Example)Ensure you allow incoming connections to your honeypot ports:Bashsudo ufw allow 2022/tcp
 sudo ufw allow 2080/tcp
 sudo ufw allow 2021/tcp
 sudo ufw allow 2023/tcp
 sudo ufw allow 2025/tcp
 sudo ufw allow 2053/udp
 sudo ufw allow 5000/tcp
-📊 Dashboard Guide
-Login Page: Access via http://your-server-ip:5000 (Default: admin/admin123). Features a 3D animated background with floating particles.
-
-Statistics Tab: View total events, alerts, attackers, risk scores, and attack distributions (Doughnut/Bar charts).
-
-Attack Map Tab: Real-time geolocation of attackers with interactive zoom/pan and heatmap layers.
-
-Alerts & Analytics: Filter by severity, acknowledge individual alerts, export to CSV, and analyze hourly attack trends.
-
-🧪 Testing the Honeypot
-Use these commands to simulate attacks and test your setup:
-# Test HTTP honeypot
+📊 Dashboard GuideLogin Page: Access via http://your-server-ip:5000 (Default: admin/admin123). Features a 3D animated background with floating particles.Statistics Tab: View total events, alerts, attackers, risk scores, and attack distributions (Doughnut/Bar charts).Attack Map Tab: Real-time geolocation of attackers with interactive zoom/pan and heatmap layers.Alerts & Analytics: Filter by severity, acknowledge individual alerts, export to CSV, and analyze hourly attack trends.🧪 Testing the HoneypotUse these commands to simulate attacks and test your setup:Bash# Test HTTP honeypot
 curl http://localhost:2080/admin
 curl "http://localhost:2080/../../../../etc/passwd"
 
@@ -187,12 +168,8 @@ ftp localhost 2021
 
 # Test Telnet honeypot
 telnet localhost 2023
-🔌 API ReferenceMethodEndpointDescriptionGET/api/eventsGet recent eventsGET/api/alertsGet security alertsGET/api/attackersGet attacker databaseGET/api/statsGet platform statisticsPOST/api/clearClear all dataPOST/api/loginAuthenticate userPOST/api/logoutLogout userExample API Call:
-curl http://localhost:5000/api/stats
-🚢 Deployment
-Run as Systemd Service (Linux)
-Keep ParryPot running permanently in the background:
-# Create service file
+🔌 API ReferenceMethodEndpointDescriptionGET/api/eventsGet recent eventsGET/api/alertsGet security alertsGET/api/attackersGet attacker databaseGET/api/statsGet platform statisticsPOST/api/clearClear all dataPOST/api/loginAuthenticate userPOST/api/logoutLogout userExample API Call:Bashcurl http://localhost:5000/api/stats
+🚢 DeploymentRun as Systemd Service (Linux)Keep ParryPot running permanently in the background:Bash# Create service file
 sudo cat > /etc/systemd/system/parrypot.service << EOF
 [Unit]
 Description=ParryPot Honeypot Service
@@ -214,4 +191,4 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable parrypot
 sudo systemctl start parrypot
-🔧 TroubleshootingIssueSolutionPort already in useChange the port in CONFIG or kill the existing process: sudo fuser -k 5000/tcpPermission deniedRun with sudo (required for binding ports below 1024).Module not foundEnsure you ran pip3 install -r requirements.txt.Dashboard not loadingCheck your firewall settings: sudo ufw allow 5000/tcp.🤝 ContributingWe welcome contributions!Fork the repository.Create a feature branch (git checkout -b feature/amazing-feature).Commit your changes (git commit -m "Add amazing feature").Push to the branch (git push origin feature/amazing-feature).Open a Pull Request.📄 LicenseDistributed under the MIT License. See LICENSE for more information.🙏 AcknowledgmentsBuilt with Python, Chart.js, and Leaflet.js.Inspired by modern SOC requirements.Glassmorphism design elements sourced from the Figma community.📞 Contact & SupportIf ParryPot helps your security operations, please consider showing your support:⭐ Star the repository on GitHub!📢 Share it with your security team.ChannelLinkGitHub@parrysecurityWebsiteparrysecurity.online IssuesReport a BugMade with 🍯 by ParrySecurity Catch attackers before they catch you.
+🔧 TroubleshootingIssueSolutionPort already in useChange the port in CONFIG or kill the existing process: sudo fuser -k 5000/tcpPermission deniedRun with sudo (required for binding ports below 1024).Module not foundEnsure you ran pip3 install -r requirements.txt.Dashboard not loadingCheck your firewall settings: sudo ufw allow 5000/tcp.🤝 ContributingWe welcome contributions!Fork the repository.Create a feature branch (git checkout -b feature/amazing-feature).Commit your changes (git commit -m "Add amazing feature").Push to the branch (git push origin feature/amazing-feature).Open a Pull Request.📄 LicenseDistributed under the MIT License. See LICENSE for more information.🙏 AcknowledgmentsBuilt with Python, Chart.js, and Leaflet.js.Inspired by modern SOC requirements.Glassmorphism design elements sourced from the Figma community.📞 Contact & SupportIf ParryPot helps your security operations, please consider showing your support:⭐ Star the repository on GitHub!📢 Share it with your security team.ChannelLinkGitHub@parrysecurityWebsiteparrysecurity.onlineEmailsecurityparry@gmail.comIssuesReport a BugMade with 🍯 by ParrySecurity Catch attackers before they catch you.
