@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-In-One Honeypot - Security Dashboard</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a3e 0%, #0d0d2b 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00ff88;
+        }
+        h1 { font-size: 28px; margin-bottom: 5px; }
+        .subtitle { color: #888; font-size: 14px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: #1a1a3e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #2a2a4e;
+        }
+        .stat-value { font-size: 36px; font-weight: bold; color: #00ff88; }
+        .stat-label { font-size: 14px; color: #888; margin-top: 10px; }
+        .panel {
+            background: #1a1a3e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a4e;
+        }
+        .panel h2 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 1px solid #2a2a4e;
+            padding-bottom: 10px;
+        }
+        .alert-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background: #0d0d2b;
+            border-left: 4px solid;
+            font-size: 13px;
+        }
+        .critical { border-left-color: #ff0000; background: #2a0a0a; }
+        .high { border-left-color: #ff6600; background: #2a1a0a; }
+        .medium { border-left-color: #ffcc00; background: #2a2a0a; }
+        .low { border-left-color: #00aa00; background: #0a2a0a; }
+        .event-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #2a2a4e;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .timestamp { color: #888; font-size: 11px; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .badge-ssh { background: #0066cc; }
+        .badge-http { background: #00aa66; }
+        .badge-ftp { background: #cc6600; }
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .two-columns { grid-template-columns: 1fr; }
+        }
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+            margin-right: 8px;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <span class="live-indicator"></span>
+            All-In-One Honeypot Platform
+        </h1>
+        <div class="subtitle">Real-time Attack Detection | Multi-Protocol Deception | MITRE ATT&CK Mapping</div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value" id="eventCount">0</div>
+            <div class="stat-label">Total Events</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="alertCount">0</div>
+            <div class="stat-label">Alerts Generated</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="attackerCount">0</div>
+            <div class="stat-label">Unique Attackers</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="uptime">Loading...</div>
+            <div class="stat-label">Uptime</div>
+        </div>
+    </div>
+
+    <div class="two-columns">
+        <div class="panel">
+            <h2>🚨 Live Alerts</h2>
+            <div id="alertsList">
+                <div style="color: #888; text-align: center; padding: 40px;">Waiting for alerts...</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>📡 Live Event Feed</h2>
+            <div id="eventsList">
+                <div style="color: #888; text-align: center; padding: 40px;">Waiting for events...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>📊 Active Listeners</h2>
+        <div id="listenersList">
+            <span class="badge badge-ssh">SSH:22</span>
+            <span class="badge badge-http">HTTP:80</span>
+            <span class="badge badge-http">HTTPS:443</span>
+            <span class="badge">FTP:21</span>
+            <span class="badge">Telnet:23</span>
+            <span class="badge">SMTP:25</span>
+            <span class="badge">DNS:53</span>
+            <span class="badge">SMB:445</span>
+        </div>
+    </div>
+
+    <script>
+        let eventCount = 0;
+        let alertCount = 0;
+        let attackers = new Set();
+
+        // Connect to WebSocket
+        const socket = io();
+
+        socket.on('connect', function() {
+            console.log('Connected to honeypot dashboard');
+        });
+
+        socket.on('new_event', function(event) {
+            eventCount++;
+            $('#eventCount').text(eventCount);
+            
+            if (event.src_ip) attackers.add(event.src_ip);
+            $('#attackerCount').text(attackers.size);
+            
+            // Add to events list
+            const eventHtml = `
+                <div class="event-item">
+                    <span class="timestamp">${new Date().toLocaleTimeString()}</span>
+                    [${event.protocol || 'UNKNOWN'}] 
+                    ${event.src_ip || 'unknown'}
+                    ${event.username ? ` - ${event.username}` : ''}
+                    ${event.command ? ` - ${event.command.substring(0, 50)}` : ''}
+                </div>
+            `;
+            
+            if ($('#eventsList').children().length > 50) {
+                $('#eventsList').children().last().remove();
+            }
+            $('#eventsList').prepend(eventHtml);
+        });
+
+        socket.on('new_alert', function(alert) {
+            alertCount++;
+            $('#alertCount').text(alertCount);
+            
+            const severityClass = (alert.severity || 'low').toLowerCase();
+            const alertHtml = `
+                <div class="alert-item ${severityClass}">
+                    <strong>[${alert.severity || 'INFO'}]</strong> 
+                    ${alert.title || 'Security Alert'}<br>
+                    <span class="timestamp">
+                        IP: ${alert.source_ip || 'unknown'} | 
+                        ${new Date().toLocaleTimeString()}
+                    </span>
+                </div>
+            `;
+            
+            if ($('#alertsList').children().length > 30) {
+                $('#alertsList').children().last().remove();
+            }
+            $('#alertsList').prepend(alertHtml);
+        });
+
+        // Update uptime
+        let startTime = new Date();
+        setInterval(() => {
+            const uptime = Math.floor((new Date() - startTime) / 1000);
+            const hours = Math.floor(uptime / 3600);
+            const minutes = Math.floor((uptime % 3600) / 60);
+            const seconds = uptime % 60;
+            $('#uptime').text(`${hours}h ${minutes}m ${seconds}s`);
+        }, 1000);
+
+        // Load initial stats
+        $.get('/api/stats', function(data) {
+            eventCount = data.total_events || 0;
+            alertCount = data.total_alerts || 0;
+            $('#eventCount').text(eventCount);
+            $('#alertCount').text(alertCount);
+        });
+    </script>
+</body>
+</html>
